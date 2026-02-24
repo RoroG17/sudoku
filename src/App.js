@@ -8,7 +8,7 @@ function Square({ square, onClick, isEdit }) {
   );
 }
 
-function Grid({ base, grid, isEditable, value }) {
+function Grid({ base, grid, isEditable, value, onGridChange }) {
   const [localGrid, setGrid] = useState(grid);
   const [selectedIndex, setSelectedIndex] = useState(isEditable);
   useEffect(() => {
@@ -31,6 +31,7 @@ function Grid({ base, grid, isEditable, value }) {
       setSelectedIndex(newEdit);
     }
     setGrid(nextGrid);
+    onGridChange(nextGrid);
   }
   return (
     <>
@@ -178,7 +179,7 @@ export default function Board() {
   }
 
   function check(i, j) {
-    if (grids[i][j] == null) return true;
+    if (grids[i][j] == null) return false;
     // Vérification case
     const box = grids[i];
     let countBox = 0;
@@ -254,18 +255,33 @@ export default function Board() {
             grid={grids[0]}
             isEditable={isEditable[0]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[0] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[1]}
             grid={grids[1]}
             isEditable={isEditable[1]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[1] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[2]}
             grid={grids[2]}
             isEditable={isEditable[2]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[2] = newGrid;
+              setGrid(updated);
+            }}
           />
         </div>
         <div className="grid-row">
@@ -274,18 +290,33 @@ export default function Board() {
             grid={grids[3]}
             isEditable={isEditable[3]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[3] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[4]}
             grid={grids[4]}
             isEditable={isEditable[4]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[4] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[5]}
             grid={grids[5]}
             isEditable={isEditable[5]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[5] = newGrid;
+              setGrid(updated);
+            }}
           />
         </div>
         <div className="grid-row">
@@ -294,18 +325,33 @@ export default function Board() {
             grid={grids[6]}
             isEditable={isEditable[6]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[6] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[7]}
             grid={grids[7]}
             isEditable={isEditable[7]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[7] = newGrid;
+              setGrid(updated);
+            }}
           />
           <Grid
             base={gridsBase[8]}
             grid={grids[8]}
             isEditable={isEditable[8]}
             value={value}
+            onGridChange={(newGrid) => {
+              const updated = [...grids];
+              updated[8] = newGrid;
+              setGrid(updated);
+            }}
           />
         </div>
       </div>
