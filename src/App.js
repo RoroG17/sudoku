@@ -177,19 +177,60 @@ export default function Board() {
     setGrid(emptyGrid);
   }
 
+  function check(i, j) {
+    if (grids[i][j] == null) return true;
+    // Vérification case
+    const box = grids[i];
+    let countBox = 0;
+    box.forEach((element) => {
+      if (element == grids[i][j]) countBox++;
+    });
+
+    if (countBox != 1) return false;
+
+    // Verification ligne
+    const rowArray = getColumnArray(i);
+    const rowLine = getRowArray(j);
+    let countRow = 0;
+    for (const grille of rowArray) {
+      for (const position of rowLine) {
+        if (grids[grille][position] === grids[i][j]) {
+          countRow++;
+        }
+      }
+    }
+    if (countRow != 1) return false;
+
+    // Verification Colonne
+    const colArray = getColumnArray(i);
+    const colLine = getRowArray(j);
+    let countCol = 0;
+    for (const grille of colArray) {
+      for (const position of colLine) {
+        if (grids[grille][position] === grids[i][j]) {
+          countCol++;
+        }
+      }
+    }
+    if (countCol != 1) return false;
+
+    return true;
+  }
+
   const [status, setStatus] = useState(null);
   function validate() {
     let newStatus = "Grille Valide";
 
     for (let i = 0; i < grids.length; i++) {
       for (let j = 0; j < grids[i].length; j++) {
-        if (!isValid(grids, i, j, grids[i][j]) || grids[i][j] == null) {
+        if (!check(i, j)) {
           newStatus = "Grille Fausses";
           setStatus(newStatus);
           return;
         }
       }
     }
+    setStatus(newStatus);
   }
 
   return (
