@@ -125,3 +125,13 @@ body {
   color: #000000;
   font-weight: 700;
 }
+
+.section-button {
+  margin-top: 1em;
+}
+
+
+.bg-green { background: #22c55e; } 
+.bg-red   { background: #ef4444; } 
+.bg-white { background: #ffffff; } 
+
